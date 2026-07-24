@@ -12,6 +12,9 @@ ex02:
 ex03:
 	ocamlopt ex03/ft_print_alphabet.ml -o $(NAME)
 
+ex04:
+	ocamlopt ex04/ft_print_comb.ml -o $(NAME)
+
 all:
 	ocamlopt $(NAME).ml -o $(NAME)
 
@@ -21,4 +24,4 @@ clean:
 fclean: clean
 	rm $(NAME)
 
-.PHONY: ex00 ex01 ex02 ex03
+.PHONY: ex00 ex01 ex02 ex03 ex04
