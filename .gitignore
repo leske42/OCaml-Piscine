@@ -1,2 +1,6 @@
 hehe.ml
 hello
+*.o
+*.cmx
+*.cmi
+*.out
