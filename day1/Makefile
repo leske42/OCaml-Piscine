@@ -21,6 +21,9 @@ ex05:
 ex06:
 	ocamlopt ex06/iter.ml -o $(NAME)
 
+ex07:
+	ocamlopt ex07/converges.ml -o $(NAME)
+
 all:
 	ocamlopt $(NAME).ml -o $(NAME)
 
@@ -30,4 +33,4 @@ clean:
 fclean: clean
 	rm $(NAME)
 
-.PHONY: ex00 ex01 ex02 ex03 ex04 ex06
+.PHONY: ex00 ex01 ex02 ex03 ex04 ex06 ex07
