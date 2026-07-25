@@ -3,4 +3,4 @@ hello
 *.o
 *.cmx
 *.cmi
-*.out
+*out
