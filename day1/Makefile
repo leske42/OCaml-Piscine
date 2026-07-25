@@ -15,6 +15,9 @@ ex03:
 ex04:
 	ocamlopt ex04/fibonacci.ml -o $(NAME)
 
+ex05:
+	ocamlopt ex05/hofstadter_mf.ml -o $(NAME)
+
 all:
 	ocamlopt $(NAME).ml -o $(NAME)
 
@@ -24,4 +27,4 @@ clean:
 fclean: clean
 	rm $(NAME)
 
-.PHONY: ex00 ex01 ex02 ex03 ex04
+.PHONY: ex00 ex01 ex02 ex03 ex04 ex05
