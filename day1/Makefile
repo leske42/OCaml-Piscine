@@ -18,6 +18,9 @@ ex04:
 ex05:
 	ocamlopt ex05/hofstadter_mf.ml -o $(NAME)
 
+ex06:
+	ocamlopt ex06/iter.ml -o $(NAME)
+
 all:
 	ocamlopt $(NAME).ml -o $(NAME)
 
@@ -27,4 +30,4 @@ clean:
 fclean: clean
 	rm $(NAME)
 
-.PHONY: ex00 ex01 ex02 ex03 ex04 ex05
+.PHONY: ex00 ex01 ex02 ex03 ex04 ex06
