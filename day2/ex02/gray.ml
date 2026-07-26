@@ -1,17 +1,19 @@
-let rec applied_to lst str =
-  match lst with
-  | [] -> []
-  | x :: rest -> (str ^ x) :: applied_to rest str
+let applied_to str to_insert =
+  to_insert ^ (String.replace_all ~sub:" " ~by:(" " ^ to_insert) str)
+
+let rec reverse list acc =
+  match list with
+  | [] -> acc
+  | x::rest -> reverse rest (x::acc)
+
+let reverse str =
+  String.concat " " (reverse (String.split_on_char ' ' str) [])
 
 let rec gray n =
     match n with
-    | 1 -> [ "0"; "1" ]
-    | _ -> ("0" |> applied_to (gray (n - 1))) @ List.rev ("1" |> applied_to (gray (n - 1)))
+    | 1 -> "0 1"
+    | _ -> (("0" |> applied_to (gray (n - 1))) ^ " " ^ reverse ("1" |> applied_to (gray (n - 1))))
 
-(* let () =
-  List.iter (Printf.printf "%d ") (crossover [ 1; 2; 3 ] [ 3; 4; 5; 1 ]);
-  print_char '\n';
-  List.iter (Printf.printf "%d ") (crossover [ 4; 5; 6; 8 ] [ 6; 4; 5; 7 ]);
-  print_char '\n';
-  List.iter (Printf.printf "%d ") (crossover [ 4; 5; 6; 8 ] []);
-  print_char '\n' *)
+
+let () = Printf.printf "GRAY 3: %s\n" (gray 3);
+  Printf.printf "GRAY 5: %s\n" (gray 5)
