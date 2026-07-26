@@ -12,4 +12,4 @@ let print_tuple x =
 let () = List.iter (print_tuple) (encode [1; 1; 1]);
   print_char '\n';
   List.iter (print_tuple) (encode [1; 2; 2; 2; 1]);
-  print_char '\n';
+  print_char '\n'
