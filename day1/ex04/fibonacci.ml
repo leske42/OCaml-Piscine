@@ -1,7 +1,11 @@
-let rec fibonacci n =
-  if n < 0 then -1
-  else if n = 0 then 0
-  else if n = 1 then 1
-  else fibonacci (n - 2) + fibonacci (n - 1)
+let fibonacci n =
+  let rec accumulator round ~n_last:n_last ~last:last =
+    match round with
+    | x when x = n -> n_last + last
+    | 0 -> accumulator (round + 1) ~n_last:0 ~last:1
+    | 1 -> accumulator (round + 1) ~n_last:0 ~last:1
+    | x -> accumulator (round + 1) ~n_last:last ~last:(n_last + last)
+  in
+  accumulator 0 ~n_last:0 ~last:0
 
 let () = Printf.printf "%d\n" (fibonacci 15)
