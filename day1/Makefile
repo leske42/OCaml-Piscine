@@ -27,6 +27,9 @@ ex07:
 ex08:
 	ocamlopt ex08/ft_sum.ml -o $(NAME)
 
+ex09:
+	ocamlopt ex09/leibniz_pi.ml -o $(NAME)
+
 all:
 	ocamlopt $(NAME).ml -o $(NAME)
 
@@ -36,4 +39,4 @@ clean:
 fclean: clean
 	rm $(NAME)
 
-.PHONY: ex00 ex01 ex02 ex03 ex04 ex05 ex06 ex07 ex08
+.PHONY: ex00 ex01 ex02 ex03 ex04 ex05 ex06 ex07 ex08 ex09
