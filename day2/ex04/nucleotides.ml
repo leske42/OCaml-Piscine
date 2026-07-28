@@ -8,12 +8,15 @@ type nucleobase =
   | None
 type nucleotide = (phosphate * deoxyribose * nucleobase)
 
-let generate_nucleotide base = 
-  let base_selector =
+let base_selector base =
     match base with
     | 'A' -> A
     | 'T' -> T
     | 'C' -> C
     | 'G' -> G
     | _ -> None
-  in (("phosphate" : phosphate), ("deoxyribose" : deoxyribose), base_selector)
+
+let generate_nucleotide: char -> nucleotide = 
+  function
+  | base -> ("phosphate", "deoxyribose", base_selector base)
+  
