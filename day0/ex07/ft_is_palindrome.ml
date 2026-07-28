@@ -7,5 +7,6 @@ let ft_is_palindrome str =
   in
   subfunc 1
 
-let () = Printf.printf "%b\n%b\n%b\n%b\n"
+let () = Printf.printf "%b\n%b\n%b\n%b\n%b\n"
   (ft_is_palindrome "1221") (ft_is_palindrome "12521") (ft_is_palindrome "hehe") (ft_is_palindrome "")
+  (ft_is_palindrome "abca")

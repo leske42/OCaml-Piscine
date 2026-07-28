@@ -2,8 +2,8 @@ let rec iter f x n =
   if n < 0 then -1 else if n = 0 then x else iter f (f x) (n - 1)
 
 let converges f x n =
-  let hehe = iter f x n in
-  if hehe = f hehe then true else false
+  let subfunc = iter f x n in
+  if subfunc = f subfunc then true else false
   
 let rec iter f x n prev =
   if x = prev then true else if n = 0 then false else iter f (f x) (n - 1) x
