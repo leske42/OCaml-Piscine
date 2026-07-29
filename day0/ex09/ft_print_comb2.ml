@@ -6,7 +6,7 @@ let print_nums a b =
   print_num a; print_char ' '; print_num b;
   if not (a = 98 && b = 99) then print_char ','
 
-let ft_print_comb2 =
+let ft_print_comb2 () =
   let rec subfunc a b =
     print_nums a b;
     if b = 99 then (if a = 98 then () else (subfunc (a + 1) (a + 2)))
@@ -14,4 +14,4 @@ let ft_print_comb2 =
   in subfunc 0 1; print_char '\n'
 
 
-let () = ft_print_comb2
+let () = ft_print_comb2 ()

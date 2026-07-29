@@ -11,8 +11,8 @@ let rec subfunc a b c =
       if b = 8 then subfunc (a + 1) (a + 2) (a + 3) else subfunc a (b + 1) (b + 2)
     else subfunc a b (c + 1))
 
-let ft_print_comb =
+let ft_print_comb () =
   subfunc 0 1 2;
   print_string "\n"
 
-let () = ft_print_comb
+let () = ft_print_comb ()
