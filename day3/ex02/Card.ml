@@ -105,11 +105,11 @@ let newCard (value : Value.t) (color : Color.t) = { value; color }
 let getValue card = card.value
 let getColor card = card.color
 
-let toString card = Value.toString card.value ^ Color.toString card.color
-let toStringVerbose card = "Card(" ^ Value.toStringVerbose card.value ^ ", " ^ Color.toStringVerbose card.color ^ ")"
+let toString card = Value.toString (getValue card) ^ Color.toString (getColor card)
+let toStringVerbose card = "Card(" ^ Value.toStringVerbose (getValue card) ^ ", " ^ Color.toStringVerbose (getColor card) ^ ")"
 
 let compare left right =
-  Value.toInt left.value - Value.toInt right.value
+  Value.toInt (getValue left) - Value.toInt (getValue right)
 let max left right = if compare left right < 0 then right else left
 let min left right = if compare left right > 0 then right else left
 let best lst =
@@ -118,7 +118,7 @@ let best lst =
   | first :: rest -> List.fold_left max first rest
 (*fold left behavior: f (... (f (f init b1) b2) ...) bn*)
 
-let isOf (card : t) (color : Color.t) = card.color = color
+let isOf (card : t) (color : Color.t) = getColor card = color
 let isSpade card = isOf card Color.Spade
 let isHeart card = isOf card Color.Heart
 let isDiamond card = isOf card Color.Diamond
