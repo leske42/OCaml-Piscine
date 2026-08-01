@@ -10,4 +10,6 @@ let () =
   Printf.printf "%s is a Spade: %b\n" (Card.toStringVerbose cardval) (Card.isSpade cardval);
   Printf.printf "%s is a Heart: %b\n" (Card.toStringVerbose cardval) (Card.isHeart cardval);
   Printf.printf "List of spades: "; List.iter (Printf.printf "%s; ") (List.map Card.toStringVerbose Card.allSpades);
+  print_char '\n';
+  Printf.printf "ALL CARDS: "; List.iter (Printf.printf "%s; ") (List.map Card.toStringVerbose Card.all);
   print_char '\n'

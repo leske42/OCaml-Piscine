@@ -102,21 +102,20 @@ end
 type t = { value : Value.t; color : Color.t }
 let newCard (value : Value.t) (color : Color.t) = { value; color }
 
-let allSpades = 
-  let rec generate value acc =
+let rec generate_suit value acc color =
     match value with
     | Value.As -> acc
-    | _ -> generate (Value.next value) ((newCard value Color.Spade)::acc)
-  in
-  generate Value.T2 []
+    | _ -> generate_suit (Value.next value) ((newCard value color)::acc) color
+
+let allSpades = generate_suit Value.T2 [] Color.Spade
   
-(* let allHearts = 
+let allHearts = generate_suit Value.T2 [] Color.Heart
   
-let allDiamonds = 
+let allDiamonds = generate_suit Value.T2 [] Color.Diamond
   
-let allClubs = 
+let allClubs = generate_suit Value.T2 [] Color.Club
   
-let all =  *)
+let all = allSpades@allHearts@allDiamonds@allClubs
 
 let getValue card = card.value
 let getColor card = card.color
