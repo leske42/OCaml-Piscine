@@ -102,6 +102,22 @@ end
 type t = { value : Value.t; color : Color.t }
 let newCard (value : Value.t) (color : Color.t) = { value; color }
 
+let allSpades = 
+  let rec generate value acc =
+    match value with
+    | Value.As -> acc
+    | _ -> generate (Value.next value) ((newCard value Color.Spade)::acc)
+  in
+  generate Value.T2 []
+  
+(* let allHearts = 
+  
+let allDiamonds = 
+  
+let allClubs = 
+  
+let all =  *)
+
 let getValue card = card.value
 let getColor card = card.color
 
@@ -123,3 +139,4 @@ let isSpade card = isOf card Color.Spade
 let isHeart card = isOf card Color.Heart
 let isDiamond card = isOf card Color.Diamond
 let isClub card = isOf card Color.Club
+

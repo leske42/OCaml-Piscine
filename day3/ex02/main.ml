@@ -9,3 +9,5 @@ let () =
   (Card.toStringVerbose (Card.best [cardval; (Card.newCard T10 Spade); (Card.newCard As Heart); (Card.newCard Queen Club)]));
   Printf.printf "%s is a Spade: %b\n" (Card.toStringVerbose cardval) (Card.isSpade cardval);
   Printf.printf "%s is a Heart: %b\n" (Card.toStringVerbose cardval) (Card.isHeart cardval);
+  Printf.printf "List of spades: "; List.iter (Printf.printf "%s; ") (List.map Card.toStringVerbose Card.allSpades);
+  print_char '\n'
