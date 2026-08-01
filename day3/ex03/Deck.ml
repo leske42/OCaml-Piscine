@@ -180,7 +180,7 @@ let toStringList lst =
     | [] -> acc
     | x::rest -> build_list rest ((Card.toString x)::acc)
   in
-  build_list lst []
+  List.rev (build_list lst [])
 
 let toStringListVerbose lst =
   let rec build_list lst acc =
@@ -188,7 +188,20 @@ let toStringListVerbose lst =
     | [] -> acc
     | x::rest -> build_list rest ((Card.toStringVerbose x)::acc)
   in
-  build_list lst []
+  List.rev (build_list lst [])
 
 let drawCard lst =
-  ((Card.newCard Card.Value.T2 Card.Color.Spade) , lst)
+  Random.self_init ();
+  let rec fold_card_out lst idx goal =
+    match lst with
+    | x::rest when idx = goal -> rest
+    | x::rest -> fold_card_out (rest@[x]) (idx + 1) goal
+    | [] -> raise (Failure "Cannot draw from empty deck")
+  in
+  let chosen = Random.int 52 in
+  (List.nth lst chosen, fold_card_out lst 0 chosen)
+
+let drawCard lst =
+  match lst with
+  | x::rest -> (x, rest)
+  | [] -> raise (Failure "Cannot draw from empty deck")

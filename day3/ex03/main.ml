@@ -1,6 +1,8 @@
 let () = Printf.printf "Full deck length: %d\n" (List.length Deck.Card.all);
-List.iter (Printf.printf "%s; ") (Deck.toStringListVerbose (Deck.newDeck ()));
-print_char '\n'
+  let deck = Deck.newDeck () in
+  List.iter (Printf.printf "%s; ") (Deck.toStringListVerbose (deck));
+  let draw_result = Deck.drawCard deck in
+  Printf.printf "\nDrawing first card... \nCard is: %s\n" (Deck.Card.toStringVerbose (fst draw_result))
   (* Printf.printf "The next value to Queen is: %s (short) and %s (long)\n"
     (Card.Value.toString (Card.Value.next Queen))
     (Card.Value.toStringVerbose (Card.Value.next Queen));
