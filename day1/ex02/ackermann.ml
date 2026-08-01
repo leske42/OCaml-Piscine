@@ -4,4 +4,6 @@ let rec ackermann m n =
   else if m > 0 && n = 0 then ackermann (m - 1) 1
   else ackermann (m - 1) (ackermann m (n - 1))
 
-let () = Printf.printf "%d\n" (ackermann 2 3)
+let () = Printf.printf "%d\n%!" (ackermann 2 3);
+Printf.printf "%d\n%!" (ackermann (-2) 3);
+Printf.printf "%d\n" (ackermann 4 1)

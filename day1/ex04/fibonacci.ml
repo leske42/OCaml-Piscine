@@ -6,6 +6,6 @@ let fibonacci n =
     | 1 -> accumulator (round + 1) ~n_last:0 ~last:1
     | x -> accumulator (round + 1) ~n_last:last ~last:(n_last + last)
   in
-  accumulator 0 ~n_last:0 ~last:0
+  if n < 0 then -1 else accumulator 0 ~n_last:0 ~last:0
 
-let () = Printf.printf "%d\n" (fibonacci 15)
+let () = Printf.printf "%d\n%d\n" (fibonacci 15) (fibonacci (-15))

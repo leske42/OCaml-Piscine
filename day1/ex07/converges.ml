@@ -14,7 +14,7 @@ let converges f x n =
 let () =
   if converges (( * ) 2) 2 5 then Printf.printf "true\n"
   else Printf.printf "false\n";
-  if converges (fun x -> x / 2) 2 3 then Printf.printf "true\n"
+  if converges (fun x -> x / 2) 2 2 then Printf.printf "true\n"
   else Printf.printf "false\n";
   if converges (fun x -> x / 2) 2 200000000 then Printf.printf "true\n"
   else Printf.printf "false\n"
