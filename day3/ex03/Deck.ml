@@ -15,6 +15,12 @@
       | Heart -> "Heart"
       | Diamond -> "Diamond"
       | Club -> "Club"
+    
+    let next = function
+      | Spade -> Heart
+      | Heart -> Diamond
+      | Diamond -> Club
+      | Club -> Spade
   end
 
   module Value = struct
@@ -123,17 +129,54 @@
   let isSpade card = isOf card Color.Spade
   let isHeart card = isOf card Color.Heart
   let isDiamond card = isOf card Color.Diamond
+  let isClub card = isOf card Color.Club
 end
 
 type t = Card.t list
 
+let swap i j lst =
+  let swap_values idx cur_value =
+    match idx with
+    | x when x = i -> List.nth lst j
+    | x when x = j -> List.nth lst i
+    | _ -> cur_value
+  in
+  if i = j then lst else List.mapi swap_values lst
+
 let newDeck () = 
+  Random.self_init ();
   let rec orderedDeck lst value color =
     match List.length lst with
     | 52 -> lst
-    | _ -> orderedDeck ((Card.newCard value color)::lst) value color
+    | _ when (Card.Value.toInt value) = 13 -> orderedDeck ((Card.newCard value color)::lst) T2 (Card.Color.next color)
+    | _ -> orderedDeck ((Card.newCard value color)::lst) (Card.Value.next value) color
   in
-  let shuffleDeck lst =
-    lst
+  let rec shuffleDeck lst turn =
+    match turn with
+    | 52 -> lst
+    | _ -> shuffleDeck (swap turn (Random.int 52) lst) (turn + 1)
   in
-  shuffleDeck (orderedDeck [] T2 Spade)
+  shuffleDeck (orderedDeck [] T2 Spade) 0
+
+(* let rec print_deck deck =
+  match deck with
+  | [] -> ()
+  | x::rest -> Printf.printf "%s; " (Deck.Card.toStringVerbose x); print_deck rest
+  in
+  print_deck (Deck.newDeck) *)
+
+let toStringList lst =
+  let rec build_list lst acc =
+    match lst with
+    | [] -> acc
+    | x::rest -> build_list rest ((Card.toString x)::acc)
+  in
+  build_list lst []
+
+let toStringListVerbose lst =
+  let rec build_list lst acc =
+    match lst with
+    | [] -> acc
+    | x::rest -> build_list rest ((Card.toStringVerbose x)::acc)
+  in
+  build_list lst []

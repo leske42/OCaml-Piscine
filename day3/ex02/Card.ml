@@ -122,3 +122,4 @@ let isOf (card : t) (color : Color.t) = getColor card = color
 let isSpade card = isOf card Color.Spade
 let isHeart card = isOf card Color.Heart
 let isDiamond card = isOf card Color.Diamond
+let isClub card = isOf card Color.Club
