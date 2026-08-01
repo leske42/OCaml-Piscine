@@ -2,14 +2,11 @@ let () = Printf.printf "Full deck length: %d\n" (List.length Deck.Card.all);
   let deck = Deck.newDeck () in
   List.iter (Printf.printf "%s; ") (Deck.toStringListVerbose (deck));
   let draw_result = Deck.drawCard deck in
-  Printf.printf "\nDrawing first card... \nCard is: %s\n" (Deck.Card.toStringVerbose (fst draw_result))
-  (* Printf.printf "The next value to Queen is: %s (short) and %s (long)\n"
-    (Card.Value.toString (Card.Value.next Queen))
-    (Card.Value.toStringVerbose (Card.Value.next Queen));
-  let cardval = (Card.newCard T2 Spade) in
-  Printf.printf "Our new card is: %s (short) and %s (long)\n"
-      (Card.toString cardval) (Card.toStringVerbose cardval);
-  Printf.printf "The highest card of this deck is: %s\n"
-  (Card.toStringVerbose (Card.best [cardval; (Card.newCard T10 Spade); (Card.newCard As Heart); (Card.newCard Queen Club)]));
-  Printf.printf "%s is a Spade: %b\n" (Card.toStringVerbose cardval) (Card.isSpade cardval);
-  Printf.printf "%s is a Heart: %b\n" (Card.toStringVerbose cardval) (Card.isHeart cardval); *)
+  Printf.printf "\nDrawing first card... \nCard is: %s\n" (Deck.Card.toStringVerbose (fst draw_result));
+  Printf.printf "Drawing all cards out of the deck...";
+  try
+  let rec keep_drawing deck =
+    keep_drawing (snd (Deck.drawCard deck))
+  in keep_drawing deck
+  with Failure reason -> Printf.printf "%s\n" reason
+
