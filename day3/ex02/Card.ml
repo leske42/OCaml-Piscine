@@ -104,7 +104,7 @@ let newCard (value : Value.t) (color : Color.t) = { value; color }
 
 let rec generate_suit value acc color =
     match value with
-    | Value.As -> acc
+    | Value.As -> (newCard value color)::acc
     | _ -> generate_suit (Value.next value) ((newCard value color)::acc) color
 
 let allSpades = generate_suit Value.T2 [] Color.Spade

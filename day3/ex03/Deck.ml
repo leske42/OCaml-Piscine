@@ -109,6 +109,21 @@
   type t = { value : Value.t; color : Color.t }
   let newCard (value : Value.t) (color : Color.t) = { value; color }
 
+  let rec generate_suit value acc color =
+    match value with
+    | Value.As -> ((newCard value color)::acc)
+    | _ -> generate_suit (Value.next value) ((newCard value color)::acc) color
+
+  let allSpades = generate_suit Value.T2 [] Color.Spade
+    
+  let allHearts = generate_suit Value.T2 [] Color.Heart
+    
+  let allDiamonds = generate_suit Value.T2 [] Color.Diamond
+    
+  let allClubs = generate_suit Value.T2 [] Color.Club
+    
+  let all = allSpades@allHearts@allDiamonds@allClubs
+
   let getValue card = card.value
   let getColor card = card.color
 
@@ -134,29 +149,23 @@ end
 
 type t = Card.t list
 
-let swap i j lst =
-  let swap_values idx cur_value =
-    match idx with
-    | x when x = i -> List.nth lst j
-    | x when x = j -> List.nth lst i
-    | _ -> cur_value
-  in
-  if i = j then lst else List.mapi swap_values lst
-
 let newDeck () = 
   Random.self_init ();
-  let rec orderedDeck lst value color =
-    match List.length lst with
-    | 52 -> lst
-    | _ when (Card.Value.toInt value) = 13 -> orderedDeck ((Card.newCard value color)::lst) T2 (Card.Color.next color)
-    | _ -> orderedDeck ((Card.newCard value color)::lst) (Card.Value.next value) color
+  let swap i j lst =
+    let swap_values idx cur_value =
+      match idx with
+      | x when x = i -> List.nth lst j
+      | x when x = j -> List.nth lst i
+      | _ -> cur_value
+    in
+    if i = j then lst else List.mapi swap_values lst
   in
   let rec shuffleDeck lst turn =
     match turn with
     | 52 -> lst
     | _ -> shuffleDeck (swap turn (Random.int 52) lst) (turn + 1)
   in
-  shuffleDeck (orderedDeck [] T2 Spade) 0
+  shuffleDeck Card.all 0
 
 (* let rec print_deck deck =
   match deck with
@@ -180,3 +189,6 @@ let toStringListVerbose lst =
     | x::rest -> build_list rest ((Card.toStringVerbose x)::acc)
   in
   build_list lst []
+
+let drawCard lst =
+  ((Card.newCard Card.Value.T2 Card.Color.Spade) , lst)

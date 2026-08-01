@@ -1,4 +1,4 @@
-module Deck : sig
+(* module Deck : sig *)
   module Card : sig
     module Color : sig
       type t = Spade | Heart | Diamond | Club
@@ -61,4 +61,4 @@ module Deck : sig
   val toStringList : t -> string list
   val toStringListVerbose : t -> string list
   val drawCard : t -> (Card.t * t)
-end
+(* end *)

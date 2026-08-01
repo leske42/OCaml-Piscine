@@ -10,7 +10,7 @@ ex02:
 	ocamlopt -I ex02 ex02/Card.ml ex02/main.ml -o $(NAME)
 
 ex03:
-	ocamlopt -I ex03 ex03/Deck.ml ex03/main.ml -o $(NAME)
+	ocamlopt -I ex03 ex03/Deck.mli ex03/Deck.ml ex03/main.ml -o $(NAME)
 
 clean:
 	rm -f */*.o */*.cmx */*.cmi */*out
